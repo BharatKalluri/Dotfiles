@@ -1,0 +1,26 @@
+# Organizes tagged mp3 files into album wise directories
+organizeMusic()
+{
+    for file in *.mp3; do
+        IFS=$':'
+        album="$(id3v2 -l "${file}" | grep "TALB" | cut -d ':' -f 2 | xargs)"
+        [[ ! -d "${album}" ]] && mkdir -p "${album}"
+        mv -f "${file}" "${album}"
+    done
+}
+
+albumdl()
+{
+    albumUrl=$1;
+    uuid=$(uuidgen);
+    mkdir /tmp/${uuid};
+    cd /tmp/${uuid};
+    spotdl -b "${albumUrl}";
+    spotdl -l *.txt;
+    cd;
+}
+
+mc () {
+  # Create a new directory and enter it
+  mkdir -p "$@" && cd "$@"
+}
