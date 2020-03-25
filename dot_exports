@@ -13,17 +13,7 @@ export PATH="$PATH:/home/bharatkalluri/.local/bin"
 export PATH="$PATH:/home/bharatkalluri/scripts"
 export PATH="$PATH:/home/bharatkalluri/$EMPLOYER/pyshribs/lambda_scripts/bin"
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
-export LAMBDA_PYTHON_HOME="$HOME/miniconda3/envs/lambdas"
 export LAMBDA_AWS_CREDS_FILE="$HOME/.aws/credentials"
-export PYTHONPATH="${PYTHONPATH}:$HOME/$EMPLOYER/lambdas/lambda_utils"
-export PYTHONPATH="${PYTHONPATH}:/home/bharatkalluri/$EMPLOYER/pyshribs/lambda_scripts"
-export PYTHONPATH="${PYTHONPATH}:/home/bharatkalluri/$EMPLOYER/pyshribs/lambda_core"
 
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
@@ -56,9 +46,6 @@ export PATH="$PATH:$HOME/Apps/flutter/bin"
 # exports required for mac
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/bin:$PATH"
-
-# pyenv
-export PATH="/Users/bharatkalluri/.pyenv/bin:$PATH"
 
 # Zplug
 export ZPLUG_HOME="$HOME/.zplug"
