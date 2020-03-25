@@ -12,5 +12,3 @@ source $NVM_DIR/bash_completion
 
 # Key bindings
 source "$FZF_BASE/shell/key-bindings.zsh"
-
-eval "$(pyenv init -)"
