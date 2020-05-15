@@ -35,6 +35,8 @@ PATH="$HOME/miniconda3/bin:$PATH"
 # Snapd
 PATH="/var/lib/snapd/snap/bin:$PATH"
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export PATH="$PATH:$HOME/.fzf/bin"
 export GOPATH=$HOME/go
