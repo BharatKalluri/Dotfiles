@@ -11,7 +11,6 @@ export PATH="$PATH:/home/bharatkalluri/.local/bin"
 
 # Add Scripts to path
 export PATH="$PATH:/home/bharatkalluri/scripts"
-export PATH="$PATH:/home/bharatkalluri/$EMPLOYER/pyshribs/lambda_scripts/bin"
 
 export LAMBDA_AWS_CREDS_FILE="$HOME/.aws/credentials"
 
@@ -52,3 +51,6 @@ export PATH="/usr/bin:$PATH"
 
 # Zplug
 export ZPLUG_HOME="$HOME/.zplug"
+
+# Poetry
+export PATH="$HOME/.poetry/bin:$PATH"
