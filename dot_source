@@ -1,3 +1,4 @@
+ZSH_DISABLE_COMPFIX=true
 source $ZSH/oh-my-zsh.sh
 
 source $ZPLUG_HOME/init.zsh
@@ -9,6 +10,3 @@ source $NVM_DIR/bash_completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Auto-completion
 [[ $- == *i* ]] && source "$FZF_BASE/shell/completion.zsh" 2> /dev/null
-
-# Key bindings
-source "$FZF_BASE/shell/key-bindings.zsh"
