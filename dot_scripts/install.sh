@@ -69,6 +69,8 @@ setup_oh_my_zsh()
 {
     echo "Installing oh my zsh!"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    echo "Installing zplug"
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 }
 
 # Install all desktop software using flatpak
@@ -145,6 +147,8 @@ setup_utils()
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     echo "Vim plug in place!"
+    echo "Installing pipenv"
+    curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
     echo "Installing common python packages"
     pip3 install --user ipython jupyter sshuttle jupyterlab boto3
     echo "Installed python packages"
