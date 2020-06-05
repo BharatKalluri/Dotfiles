@@ -15,8 +15,8 @@ setup_solus() {
 
 setup_macos() {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-    brew cask install iterm2 jetbrains-toolbox alfred bitwarden flock telegram firefox nginx postgresql vivaldi
-    brew install stow pyenv
+    brew install git yarn postgresql redis fzf make
+    brew cask install visual-studio-code firefox rectangle iterm2 docker vlc flock spotify postico postman jetbrains-toolbox zoom ticktick anaconda bitwarden whatsapp
     xcode-select --install
 }
 
