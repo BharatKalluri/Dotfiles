@@ -32,6 +32,9 @@ export FZF_BASE="$HOME/.fzf"
 PATH="$HOME/miniconda3/bin:$PATH"
 PATH="$HOME/anaconda3/bin:$PATH"
 
+# Anaconda setup on mac
+export PATH="/usr/local/anaconda3/bin:$PATH"
+
 # Snapd
 PATH="/var/lib/snapd/snap/bin:$PATH"
 
