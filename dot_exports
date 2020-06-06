@@ -1,3 +1,6 @@
+# Set editor to nvim as nvim is AWESOME!!!
+export EDITOR=nvim
+
 EMPLOYER="jitfin"
 
 # Path to your oh-my-zsh installation.
