@@ -60,3 +60,6 @@ export ZPLUG_HOME="$HOME/.zplug"
 
 # Poetry
 export PATH="$HOME/.poetry/bin:$PATH"
+
+# Ruby
+export PATH="$PATH:$HOME/.rvm/bin"
