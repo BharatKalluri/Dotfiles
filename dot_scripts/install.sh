@@ -44,7 +44,7 @@ setup_fedora()
     # RPMFusion install
     sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
-    sudo dnf install stow gstreamer1-plugins-base gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer1-plugins-ugly gstreamer-plugins-good-extras gstreamer1-plugins-good-extras gstreamer1-plugins-bad-freeworld ffmpeg gstreamer-ffmpeg java-1.8.0-openjdk java-1.8.0-openjdk-devel ffmpeg-libs make gcc-c++ -y
+    sudo dnf install stow gstreamer1-plugins-base gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer1-plugins-ugly gstreamer-plugins-good-extras gstreamer1-plugins-good-extras gstreamer1-plugins-bad-freeworld ffmpeg gstreamer-ffmpeg ffmpeg-libs make gcc-c++ zsh -y
 
     sudo dnf groupinstall "Development Tools" -y
 }
@@ -55,14 +55,6 @@ setup_git()
     echo "Setting up git"
     git config --global user.name "Bharat Kalluri"
     git config --global user.email "bharatkalluri@protonmail.com"
-}
-
-setup_dotfiles()
-{
-    echo "Stow-ing all dotfiles"
-    rm -f ~/.bashrc ~/.zshrc
-    for D in */; do stow $D; done
-    echo "Dotfiles in place"
 }
 
 setup_oh_my_zsh()
@@ -202,7 +194,6 @@ elif [[ $(cat /etc/*-release | grep -c fedora) -gt 0  ]]; then
     ask setup_fedora
 fi
 
-ask setup_dotfiles
 ask setup_oh_my_zsh
 ask setup_git
 ask setup_ssh_keys
