@@ -4,7 +4,7 @@ setup_ubuntu()
 {
     echo "Adding repos, updating system and installing basic software"
     sudo apt update && sudo apt upgrade -y
-    sudo apt install -y flatpak gnome-software-plugin-flatpak neovim zsh stow git gnome-tweak-tool xdotool wmctrl libinput-tools lolcat ffmpeg
+    sudo apt install -y flatpak neovim zsh git ffmpeg
 }
 
 setup_solus() {
