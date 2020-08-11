@@ -90,8 +90,6 @@ setup_node()
     echo "Installing Node using NVM"
     wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
     echo "Installed nvm!"
-    source ~/.zshrc
-    nvm install 10
 }
 
 setup_rust()
