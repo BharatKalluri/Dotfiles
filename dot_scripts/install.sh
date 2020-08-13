@@ -4,7 +4,7 @@ setup_ubuntu()
 {
     echo "Adding repos, updating system and installing basic software"
     sudo apt update && sudo apt upgrade -y
-    sudo apt install -y flatpak gnome-software-plugin-flatpak neovim zsh stow git gnome-tweak-tool xdotool wmctrl libinput-tools lolcat ffmpeg
+    sudo apt install -y flatpak neovim zsh git ffmpeg
 }
 
 setup_solus() {
@@ -90,8 +90,6 @@ setup_node()
     echo "Installing Node using NVM"
     wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
     echo "Installed nvm!"
-    source ~/.zshrc
-    nvm install 10
 }
 
 setup_rust()
