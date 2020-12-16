@@ -4,13 +4,13 @@ setup_ubuntu()
 {
     echo "Adding repos, updating system and installing basic software"
     sudo apt update && sudo apt upgrade -y
-    sudo apt install -y flatpak neovim zsh git ffmpeg
+    sudo apt install -y zsh git ffmpeg
 }
 
 setup_solus() {
     echo "Solus Setup starting >>"
     sudo eopkg up
-    sudo eopkg it git flatpak xdg-desktop-portal-gtk neovim zsh stow golang lolcat
+    sudo eopkg it git flatpak xdg-desktop-portal-gtk zsh stow golang lolcat
 }
 
 setup_macos() {
@@ -34,7 +34,7 @@ setup_pi()
 {
     echo "Updating and upgrading system"
     sudo apt update && sudo apt upgrade -y
-    sudo apt install neovim zsh stow lolcat git
+    sudo apt install zsh stow git
 }
 
 setup_fedora()
