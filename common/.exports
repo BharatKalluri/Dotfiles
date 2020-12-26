@@ -10,10 +10,11 @@ export ZSH="$HOME/.oh-my-zsh"
 export NVM_DIR="$HOME/.nvm"
 
 # Generic Path additions
-export PATH="$PATH:/home/bharatkalluri/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.yarn/bin"
 
 # Add Scripts to path
-export PATH="$PATH:/home/bharatkalluri/scripts"
+export PATH="$PATH:$HOME/scripts"
 
 export LAMBDA_AWS_CREDS_FILE="$HOME/.aws/credentials"
 
