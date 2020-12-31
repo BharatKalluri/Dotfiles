@@ -3,7 +3,7 @@ if [ -f ~/.exports ]; then
 fi
 
 export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="sorin"
+ZSH_THEME="robbyrussell"
 plugins=(
     git
 )
@@ -13,11 +13,9 @@ if [ -f ~/.source ]; then
     . ~/.source
 fi
 
-
 if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
-
 
 if [ -f ~/.functions ]; then
     . ~/.functions
