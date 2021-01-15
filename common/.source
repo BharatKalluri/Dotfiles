@@ -3,10 +3,10 @@ source $ZSH/oh-my-zsh.sh
 
 source $ZPLUG_HOME/init.zsh
 
-source $NVM_DIR/nvm.sh
-source $NVM_DIR/bash_completion
+[ -f $NVM_DIR/nvm.sh ] && source $NVM_DIR/nvm.sh
+[ -f $NVM_DIR/bash_completion ] && source $NVM_DIR/bash_completion
 
-source "$HOME/.cargo/env"
+[ -f $HOME/.cargo/env ] && source "$HOME/.cargo/env"
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
