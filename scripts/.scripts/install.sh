@@ -142,56 +142,45 @@ setup_ssh_keys() {
     ssh-keygen -t ed25519 -C "bharatkalluri@protonmail.com"
 }
 
-ask() {
-    echo "Run $1?"
-    select yn in "Yes" "No"; do
-        case $yn in
-        Yes)
-            $1
-            break
-            ;;
-        No)
-            printf "Skipping $1\n"
-            break
-            ;;
-        esac
+# Whiptail UI
+
+STEP_LIST=(
+    "install_fonts"
+    "setup_ubuntu"
+    "setup_macos"
+    "setup_pi"
+    "setup_fedora"
+    "setup_oh_my_zsh"
+    "setup_git"
+    "setup_node"
+    "setup_rust"
+    "setup_docker"
+    "setup_flutter"
+    "setup_miniconda"
+    "setup_albert"
+    "setup_utils"
+    "setup_ssh_keys"
+    "setup_flatpak"
+)
+entry_options=()
+entries_count=${#STEP_LIST[@]}
+message=$'Choose the steps to run!'
+
+for STEP_NAME in "${!STEP_LIST[@]}"; do
+    entry_options+=("$STEP_NAME")
+    entry_options+=("${STEP_LIST[$STEP_NAME]}")
+    entry_options+=("OFF")
+done
+
+SELECTED_STEPS_RAW=$(whiptail --checklist --separate-output --title "Setup" "$message" 30 98 $entries_count -- "${entry_options[@]}" 3>&1 1>&2 2>&3)
+
+SELECTED_STEPS=()
+
+mapfile -t SELECTED_STEPS <<<"$SELECTED_STEPS_RAW"
+
+if [[ -z SELECTED_STEPS ]]; then
+    for STEP_FN_NAME in "${SELECTED_STEPS[@]}"; do
+        echo "---Running ${STEP_FN_NAME}---"
+        ${STEP_LIST[$STEP_FN_NAME]}
     done
-}
-
-# Get Operating system flavour
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    echo "Detected MacOS"
-    flavour="macos"
-    ask setup_macos
-    ask setup_macos_python
-elif [[ $(cat /etc/*-release | grep -c rasp) -gt 0 ]]; then
-    echo "Detected Raspberry Pi!"
-    flavour="raspbian"
-    ask setup_pi
-elif [[ $(cat /etc/*-release | grep -c ubuntu) -gt 0 ]] || [[ $(cat /etc/*-release | grep -c elementary) -gt 0 ]]; then
-    echo "Detected Debian based system!"
-    flavour="ubuntu"
-    ask setup_ubuntu
-elif [[ $(cat /etc/*-release | grep -c solus) -gt 0 ]]; then
-    flavour="solus"
-    ask setup_solus
-elif [[ $(cat /etc/*-release | grep -c fedora) -gt 0 ]]; then
-    flavour="fedora"
-    echo "Detected Fedora"
-    ask setup_fedora
 fi
-
-ask setup_oh_my_zsh
-ask setup_git
-ask setup_ssh_keys
-ask setup_miniconda
-ask setup_node
-ask setup_rust
-ask setup_docker
-ask setup_utils
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    ask setup_flatpak
-    ask setup_albert
-fi
-ask setup_flutter
-ask install_fonts
