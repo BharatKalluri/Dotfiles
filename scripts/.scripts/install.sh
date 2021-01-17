@@ -145,42 +145,51 @@ setup_ssh_keys() {
 # Whiptail UI
 
 STEP_LIST=(
-    "install_fonts"
-    "setup_ubuntu"
-    "setup_macos"
-    "setup_pi"
-    "setup_fedora"
-    "setup_oh_my_zsh"
-    "setup_git"
-    "setup_node"
-    "setup_rust"
-    "setup_docker"
-    "setup_flutter"
-    "setup_miniconda"
-    "setup_albert"
-    "setup_utils"
-    "setup_ssh_keys"
-    "setup_flatpak"
+    "install_fonts" "Install fonts"
+    "setup_ubuntu" "Update and setup ubuntu"
+    "setup_macos" "Update and setup macOS"
+    "setup_pi" "Update and setup raspberry pi"
+    "setup_fedora" "Update and setup fedora"
+    "setup_oh_my_zsh" "Install oh my ZSH!"
+    "setup_git" "Setup git email and name"
+    "setup_node" "Install node using NVM"
+    "setup_rust" "Install Rust"
+    "setup_docker" "Install docker"
+    "setup_flutter" "Install flutter and its toolchain"
+    "setup_miniconda" "Setup python using miniconda"
+    "setup_albert" "Install albert plugins"
+    "setup_utils" "Setup other utils like FZF, utility python packages etc.."
+    "setup_ssh_keys" "Create and setup ssh keys"
+    "setup_flatpak" "Setup and install flatpak apps from flathub"
 )
 entry_options=()
 entries_count=${#STEP_LIST[@]}
 message=$'Choose the steps to run!'
 
-for STEP_NAME in "${!STEP_LIST[@]}"; do
-    entry_options+=("$STEP_NAME")
-    entry_options+=("${STEP_LIST[$STEP_NAME]}")
-    entry_options+=("OFF")
+for i in "${!STEP_LIST[@]}"; do
+    if [ $((i % 2)) == 0 ]; then
+        entry_options+=($(($i / 2)))
+        entry_options+=("${STEP_LIST[$(($i + 1))]}")
+        entry_options+=("OFF")
+    fi
 done
 
-SELECTED_STEPS_RAW=$(whiptail --checklist --separate-output --title "Setup" "$message" 30 98 $entries_count -- "${entry_options[@]}" 3>&1 1>&2 2>&3)
+SELECTED_STEPS_RAW=$(
+    whiptail \
+        --checklist \
+        --separate-output \
+        --title "Setup" \
+        "$message" \
+        40 78 \
+        $entries_count -- "${entry_options[@]}" \
+        3>&1 1>&2 2>&3
+)
 
-SELECTED_STEPS=()
-
-mapfile -t SELECTED_STEPS <<<"$SELECTED_STEPS_RAW"
-
-if [[ -z SELECTED_STEPS ]]; then
-    for STEP_FN_NAME in "${SELECTED_STEPS[@]}"; do
+if [[ ! -z SELECTED_STEPS_RAW ]]; then
+    for STEP_FN_ID in "${SELECTED_STEPS_RAW[@]}"; do
+        FN_NAME_ID=$(($STEP_FN_ID * 2))
+        STEP_FN_NAME="${STEP_LIST[$FN_NAME_ID]}"
         echo "---Running ${STEP_FN_NAME}---"
-        ${STEP_LIST[$STEP_FN_NAME]}
+        $STEP_FN_NAME
     done
 fi
