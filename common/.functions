@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Organizes tagged mp3 files into album wise directories
 organizeMusic() {
     for file in *.mp3; do
@@ -26,12 +28,12 @@ mc() {
 
 # Mutes audio if spotify ad is playing
 mute_ad_spotify() {
-    
+
     SPOTIFY_SINK_ID=$(pacmd list-sink-inputs | tr '\n' '\r' | perl -pe 's/ *index: ([0-9]+).+?application\.name = "([^\r]+)"\r.+?(?=index:|$)/\2:\1\r/g' | tr '\r' '\n' | grep spotify | cut -d ":" -f 2)
 
     if [ ! -z "$SPOTIFY_SINK_ID" ]; then
         MEDIA_TITLE=$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Metadata 2>/dev/null | sed -n '/title/{n;p}' | cut -d '"' -f 2)
-        
+
         IS_SPOTIFY_AD=0
         [[ $MEDIA_TITLE == *Advertisement* ]] && IS_SPOTIFY_AD=1
 
