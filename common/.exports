@@ -61,3 +61,7 @@ export PATH="$HOME/.poetry/bin:$PATH"
 
 # Ruby
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Spicetify-cli
+export SPICETIFY_INSTALL="/home/bharatkalluri/Apps/spicetify-cli"
+export PATH="$SPICETIFY_INSTALL:$PATH"

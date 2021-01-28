@@ -37,11 +37,34 @@ mute_ad_spotify() {
         IS_SPOTIFY_AD=0
         [[ $MEDIA_TITLE == *Advertisement* ]] && IS_SPOTIFY_AD=1
 
-        if [[ $IS_SPOTIFY_AD == 1 ]]; then
+        if [[ $IS_SPOTIFY_AD == 0 ]]; then
+            echo "Is spotify ad"
             pactl set-sink-input-mute ${SPOTIFY_SINK_ID} 1
-        elif [[ $IS_SPOTIFY_AD == 0 ]]; then
+        elif [[ $IS_SPOTIFY_AD == 1 ]]; then
+            echo "Is not spotify ad"
             pactl set-sink-input-mute ${SPOTIFY_SINK_ID} 0
         fi
     fi
 
+}
+
+CLIPBOARD_HISTORY_FILE="$HOME/.clipboard_history"
+
+populate_clipboard_history() {
+    touch $CLIPBOARD_HISTORY_FILE
+    XSEL_OUT="$(xsel -b | base64 -w 0)"
+    LAST_LINE_IN_HISTORY="$(tail -1 $CLIPBOARD_HISTORY_FILE)"
+
+    if [[ $(expr ${#XSEL_OUT}) > 0 ]]; then
+        if [[ $LAST_LINE_IN_HISTORY != "$XSEL_OUT" ]]; then
+            printf "$XSEL_OUT\n" >>$CLIPBOARD_HISTORY_FILE
+        fi
+    fi
+}
+
+trigger_clipboard_history_search() {
+    while read HISTORY_ITEM; do
+        DECODED_HISTORY_ITEM=$(printf "$HISTORY_ITEM" | base64 --decode | tr "\n" "\t\t")
+        printf "$DECODED_HISTORY_ITEM\n"
+    done <$CLIPBOARD_HISTORY_FILE | fzf --reverse --height 40% | tr "\t\t" "\n" | xsel -b
 }

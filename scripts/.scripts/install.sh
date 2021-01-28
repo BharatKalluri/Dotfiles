@@ -178,7 +178,7 @@ if [[ ! -z SELECTED_STEPS_RAW ]]; then
     for STEP_FN_ID in ${SELECTED_STEPS_RAW[@]}; do
         FN_NAME_ID=$(($STEP_FN_ID * 2))
         STEP_FN_NAME="${STEP_LIST[$FN_NAME_ID]}"
-        echo '---Running ${STEP_FN_NAME}---'
+        echo "---Running ${STEP_FN_NAME}---"
         $STEP_FN_NAME
     done
 fi

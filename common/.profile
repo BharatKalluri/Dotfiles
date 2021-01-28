@@ -1,6 +1,3 @@
-if [ -f ~/.functions ]; then
-    . ~/.functions
-fi
+#!/bin/bash
 
-# Mute spotify on ad
-while sleep 1; do mute_ad_spotify; done &
+nohup /home/bharatkalluri/.run_on_startup &
