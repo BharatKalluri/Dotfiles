@@ -1,11 +1,10 @@
 #!/bin/bash
 
-if [ -f ~/.functions ]; then
-    . ~/.functions
+if [ -f $HOME/.functions ]; then
+    . $HOME/.functions
 fi
 
 # Mute spotify on ad
-# Need to fix
 while sleep 1; do mute_ad_spotify; done &
 # Populate clipboard history
 while sleep 1; do populate_clipboard_history; done &
