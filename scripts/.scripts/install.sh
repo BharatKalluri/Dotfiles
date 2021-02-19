@@ -21,7 +21,7 @@ setup_macos() {
     brew install --cask \
         visual-studio-code firefox rectangle iterm2 docker vlc spotify postico \
         postman jetbrains-toolbox zoom ticktick bitwarden whatsapp \
-        slack robo-3t
+        slack robo-3t telegram
     brew services start mongodb/brew/mongodb-community
     xcode-select --install
 }
