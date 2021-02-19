@@ -13,9 +13,16 @@ setup_solus() {
 }
 
 setup_macos() {
+    echo "Installing homebrew"
     /bin/bash -c '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)'
-    brew install git yarn postgresql redis fzf make
-    brew cask install visual-studio-code firefox rectangle iterm2 docker vlc flock spotify postico postman jetbrains-toolbox zoom ticktick anaconda bitwarden whatsapp
+    echo "Installing mongodb"
+    brew tap mongodb/brew
+    brew install git yarn postgresql redis fzf make mongodb-community stow
+    brew install --cask \
+        visual-studio-code firefox rectangle iterm2 docker vlc spotify postico \
+        postman jetbrains-toolbox zoom ticktick bitwarden whatsapp \
+        slack robo-3t
+    brew services start mongodb/brew/mongodb-community
     xcode-select --install
 }
 
