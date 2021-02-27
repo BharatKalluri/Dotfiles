@@ -17,11 +17,10 @@ setup_macos() {
     /bin/bash -c '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)'
     echo "Installing mongodb"
     brew tap mongodb/brew
-    brew install git yarn postgresql redis fzf make mongodb-community stow
+    brew install git yarn postgresql redis fzf make mongodb-community stow wget awscli mongodb-database-tools newt
     brew install --cask \
-        visual-studio-code firefox rectangle iterm2 docker vlc spotify postico \
-        postman jetbrains-toolbox zoom ticktick bitwarden whatsapp \
-        slack robo-3t telegram
+        alfred firefox libreoffice simplenote the-unarchiver visual-studio-code bitwarden iina \
+        postman slack ticktick dash iterm2 rectangle spotify docker jetbrains-toolbox robo-3t telegram transmission
     brew services start mongodb/brew/mongodb-community
     xcode-select --install
 }
