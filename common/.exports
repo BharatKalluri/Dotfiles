@@ -34,10 +34,10 @@ PATH="$HOME/miniconda3/bin:$PATH"
 PATH="$HOME/anaconda3/bin:$PATH"
 
 # Anaconda setup on mac
-export PATH="/usr/local/anaconda3/bin:$PATH"
+export PATH="$PATH:/usr/local/anaconda3/bin"
 
 # Snapd
-PATH="/var/lib/snapd/snap/bin:$PATH"
+PATH="$PATH:/var/lib/snapd/snap/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -50,8 +50,8 @@ export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/Apps/flutter/bin"
 
 # exports required for mac
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/bin:$PATH"
+export PATH="$PATH:/usr/local/bin"
+export PATH="$PATH:/usr/bin"
 
 # Zplug
 export ZPLUG_HOME="$HOME/.zplug"
@@ -64,4 +64,4 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # Spicetify-cli
 export SPICETIFY_INSTALL="/home/bharatkalluri/Apps/spicetify-cli"
-export PATH="$SPICETIFY_INSTALL:$PATH"
+export PATH="$PATH:$SPICETIFY_INSTALL"
