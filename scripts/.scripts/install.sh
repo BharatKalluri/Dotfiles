@@ -137,6 +137,10 @@ setup_ssh_keys() {
     ssh-keygen -t ed25519 -C 'bharatkalluri@protonmail.com'
 }
 
+setup_z() {
+    curl https://raw.githubusercontent.com/rupa/z/master/z.sh --create-dirs -o ~/.local/bin/z.sh
+}
+
 # Whiptail UI
 
 STEP_LIST=(
@@ -154,6 +158,7 @@ STEP_LIST=(
     'setup_miniconda' 'Setup python using miniconda'
     'setup_albert' 'Install albert plugins'
     'setup_fzf' 'Setup FZF'
+    'setup_z' 'Setup Z'
     'setup_ssh_keys' 'Create and setup ssh keys'
 )
 
