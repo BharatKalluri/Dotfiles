@@ -21,10 +21,6 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
-# Spotify Creds
-export SPOTIFY_ID='07d728d8751646219ab0532ca21ba982'
-export SPOTIFY_SECRET='6ad82c4fd7cc498fbf738ea08f4135d3'
-
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 export FZF_BASE="$HOME/.fzf"
@@ -38,8 +34,6 @@ export PATH="$PATH:/usr/local/anaconda3/bin"
 
 # Snapd
 PATH="$PATH:/var/lib/snapd/snap/bin"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export PATH="$PATH:$HOME/.fzf/bin"
@@ -61,6 +55,9 @@ export PATH="$HOME/.poetry/bin:$PATH"
 
 # Ruby
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Linux brew
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 
 # Spicetify-cli
 export SPICETIFY_INSTALL="/home/bharatkalluri/Apps/spicetify-cli"
