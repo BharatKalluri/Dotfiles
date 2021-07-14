@@ -6,6 +6,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 plugins=(
     git
+    zsh-autosuggestions
 )
 ZSH_DISABLE_COMPFIX=true
 
@@ -25,7 +26,5 @@ fi
 zplug 'wfxr/forgit'
 zplug 'dracula/zsh', as:theme
 zplug load
-
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >>/home/bharatkalluri/.zprofile
 
 . ~/.local/bin/z.sh

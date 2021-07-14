@@ -64,6 +64,9 @@ setup_oh_my_zsh() {
     sh -c '$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)'
     echo 'Installing zplug'
     curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+    echo 'Installing z.sh'
+    curl https://raw.githubusercontent.com/rupa/z/master/z.sh >> ~/.local/bin/z.sh
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 }
 
 # Install all desktop software using flatpak
