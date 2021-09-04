@@ -6,3 +6,4 @@ alias respawn_docker="docker-compose down && git pull --all && docker-compose up
 alias sp="nvim ~/.scratchpad"
 alias clips="trigger_clipboard_history_search"
 alias brewup="brew update; brew upgrade; brew cleanup; brew doctor"
+alias ls="exa"
