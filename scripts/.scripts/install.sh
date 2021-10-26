@@ -25,16 +25,6 @@ setup_macos() {
     xcode-select --install
 }
 
-setup_macos_python() {
-    pyenv install 3.8.0
-    pyenv global 3.8.0
-    CFLAGS='-I/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/include' \
-        LDFLAGS='-L/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib' \
-        pip install --user pycrypto
-
-    LDFLAGS=-L/usr/local/opt/openssl/lib pip install psycopg2
-}
-
 setup_pi() {
     echo 'Updating and upgrading system'
     sudo apt update && sudo apt upgrade -y
@@ -59,13 +49,19 @@ setup_git() {
     git config --global user.email 'bharatkalluri@protonmail.com'
 }
 
+setup_asdf() {
+    echo 'Installing asdf'
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
+    echo 'asdf installation complete'
+}
+
 setup_oh_my_zsh() {
     echo 'Installing oh my zsh!'
     sh -c '$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)'
     echo 'Installing zplug'
     curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
     echo 'Installing z.sh'
-    curl https://raw.githubusercontent.com/rupa/z/master/z.sh >> ~/.local/bin/z.sh
+    curl https://raw.githubusercontent.com/rupa/z/master/z.sh >>~/.local/bin/z.sh
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 }
 
@@ -75,10 +71,12 @@ setup_flatpak() {
     # Add flathub repo
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     flatpak_list=(
-        com.spotify.Client org.telegram.desktop org.gnome.Lollypop org.inkscape.Inkscape
-        org.gimp.GIMP org.gnome.Builder org.gnome.Fractal com.github.johnfactotum.Foliate
-        com.uploadedlobster.peek org.gnome.Podcasts com.valvesoftware.Steam
-        org.nextcloud.Nextcloud
+        com.spotify.Client
+        org.telegram.desktop
+        org.gnome.Builder
+        com.github.johnfactotum.Foliate
+        org.gnome.Podcasts
+        com.valvesoftware.Steam
     )
     for item in ${flatpak_list[*]}; do
         # A fn at runtime to ask and install flatpak ;)
@@ -88,14 +86,18 @@ setup_flatpak() {
 }
 
 setup_node() {
-    echo 'Installing Node using NVM'
-    wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+    asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+    asdf install nodejs latest
+    asdf global nodejs latest
+    npm install -g yarn
     echo 'Installed nvm!'
 }
 
 setup_rust() {
-    echo 'Installing rust'
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    asdf plugin-add rust https://github.com/asdf-community/asdf-rust.git
+    asdf install rust latest
+    asdf global rust latest
+    echo 'rust setup complete!'
 }
 
 setup_docker() {
@@ -103,18 +105,11 @@ setup_docker() {
     curl -sSL https://get.docker.com | sh
 }
 
-setup_flutter() {
-    cd ~/Apps
-    git clone https://github.com/flutter/flutter.git
-    flutter precache
-}
-
-setup_miniconda() {
-    echo 'Setting up miniconda'
-    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/Downloads/miniconda.sh
-    bash ~/Downloads/miniconda.sh
-    echo 'Cleaning up'
-    rm ~/Downloads/miniconda.sh
+setup_python() {
+    asdf plugin-add python
+    asdf install python latest
+    asdf global python latest
+    echo 'python setup complete!'
 }
 
 setup_albert() {
@@ -152,17 +147,18 @@ STEP_LIST=(
     'setup_macos' 'Update and setup macOS'
     'setup_pi' 'Update and setup raspberry pi'
     'setup_fedora' 'Update and setup fedora'
-    'setup_oh_my_zsh' 'Install oh my ZSH!'
     'setup_git' 'Setup git email and name'
-    'setup_node' 'Install node using NVM'
-    'setup_rust' 'Install Rust'
+    'setup_flatpak' 'Setup desktop apps'
+    'setup_asdf' 'Setup asdf VM'
+    'setup_node' 'Install node using asdf'
+    'setup_rust' 'Install rust using asdf'
     'setup_docker' 'Install docker'
-    'setup_flutter' 'Install flutter and its toolchain'
-    'setup_miniconda' 'Setup python using miniconda'
+    'setup_python' 'Setup python using asdf'
     'setup_albert' 'Install albert plugins'
     'setup_fzf' 'Setup FZF'
     'setup_z' 'Setup Z'
     'setup_ssh_keys' 'Create and setup ssh keys'
+    'setup_oh_my_zsh' 'Install oh my ZSH!'
 )
 
 entry_options=()
