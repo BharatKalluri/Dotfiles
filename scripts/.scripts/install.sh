@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 PATH=$PATH:~/.asdf/bin
+common_software=(zsh exa git stow ffmpeg curl wget)
 
 setup_ubuntu() {
     echo 'Adding repos, updating system and installing basic software'
     sudo apt update && sudo apt upgrade -y
-    sudo apt install -y zsh git ffmpeg curl
+    sudo apt install -y $common_software
 }
 
 setup_macos() {
@@ -24,7 +25,7 @@ setup_macos() {
 setup_pi() {
     echo 'Updating and upgrading system'
     sudo apt update && sudo apt upgrade -y
-    sudo apt install zsh stow git
+    sudo apt install $common_software
 }
 
 setup_fedora() {
@@ -33,13 +34,13 @@ setup_fedora() {
     # RPMFusion install
     sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
-    sudo dnf install stow gstreamer1-plugins-base gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer1-plugins-ugly gstreamer-plugins-good-extras gstreamer1-plugins-good-extras gstreamer1-plugins-bad-freeworld ffmpeg gstreamer-ffmpeg ffmpeg-libs make gcc-c++ zsh stow -y
+    sudo dnf install $common_software
+    sudo dnf install gstreamer1-plugins-base gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer1-plugins-ugly gstreamer-plugins-good-extras gstreamer1-plugins-good-extras gstreamer1-plugins-bad-freeworld ffmpeg gstreamer-ffmpeg ffmpeg-libs -y
 
     sudo dnf groupinstall 'Development Tools' -y
 }
 
 setup_git() {
-    # Setting up git
     echo 'Setting up git'
     git config --global user.name 'Bharat Kalluri'
     git config --global user.email 'bharatkalluri@protonmail.com'
