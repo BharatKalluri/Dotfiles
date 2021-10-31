@@ -1,15 +1,11 @@
 #!/usr/bin/env bash
 
+PATH=$PATH:~/.asdf/bin
+
 setup_ubuntu() {
     echo 'Adding repos, updating system and installing basic software'
     sudo apt update && sudo apt upgrade -y
-    sudo apt install -y zsh git ffmpeg
-}
-
-setup_solus() {
-    echo 'Solus Setup starting >>'
-    sudo eopkg up
-    sudo eopkg it git flatpak xdg-desktop-portal-gtk zsh stow golang lolcat
+    sudo apt install -y zsh git ffmpeg curl
 }
 
 setup_macos() {
@@ -56,8 +52,10 @@ setup_asdf() {
 }
 
 setup_oh_my_zsh() {
+    rm -rf ~/.oh-my-zsh
+    rm -rf ~/.zshrc
     echo 'Installing oh my zsh!'
-    sh -c '$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)'
+    sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
     echo 'Installing zplug'
     curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
     echo 'Installing z.sh'
@@ -67,37 +65,27 @@ setup_oh_my_zsh() {
 
 # Install all desktop software using flatpak
 setup_flatpak() {
-    echo 'Setting up flatpak and installing software'
-    # Add flathub repo
+    echo 'Setting up flatpak'
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    flatpak_list=(
-        com.spotify.Client
-        org.telegram.desktop
-        org.gnome.Builder
-        com.github.johnfactotum.Foliate
-        org.gnome.Podcasts
+    flatpak install flathub com.spotify.Client org.telegram.desktop \
+        org.gnome.Builder \
+        com.github.johnfactotum.Foliate \
+        org.gnome.Podcasts \
         com.valvesoftware.Steam
-    )
-    for item in ${flatpak_list[*]}; do
-        # A fn at runtime to ask and install flatpak ;)
-        eval '_${item}() { flatpak install flathub $item -y; }'
-        ask _$item
-    done
 }
 
 setup_node() {
     asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
     asdf install nodejs latest
     asdf global nodejs latest
-    npm install -g yarn
-    echo 'Installed nvm!'
+    echo 'Installed node!'
 }
 
 setup_rust() {
     asdf plugin-add rust https://github.com/asdf-community/asdf-rust.git
     asdf install rust latest
     asdf global rust latest
-    echo 'rust setup complete!'
+    echo 'Installed rust!'
 }
 
 setup_docker() {
@@ -135,10 +123,6 @@ setup_ssh_keys() {
     ssh-keygen -t ed25519 -C 'bharatkalluri@protonmail.com'
 }
 
-setup_z() {
-    curl https://raw.githubusercontent.com/rupa/z/master/z.sh --create-dirs -o ~/.local/bin/z.sh
-}
-
 # Whiptail UI
 
 STEP_LIST=(
@@ -156,7 +140,6 @@ STEP_LIST=(
     'setup_python' 'Setup python using asdf'
     'setup_albert' 'Install albert plugins'
     'setup_fzf' 'Setup FZF'
-    'setup_z' 'Setup Z'
     'setup_ssh_keys' 'Create and setup ssh keys'
     'setup_oh_my_zsh' 'Install oh my ZSH!'
 )
