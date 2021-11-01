@@ -7,6 +7,7 @@ setup_ubuntu() {
     echo 'Adding repos, updating system and installing basic software'
     sudo apt update && sudo apt upgrade -y
     sudo apt install -y $common_software
+    sudo apt install -y build-essential libgtk-4-dev libsqlite3-dev libbz2-dev
 }
 
 setup_macos() {
