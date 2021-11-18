@@ -18,7 +18,7 @@ setup_macos() {
     brew install git yarn postgresql redis fzf make mongodb-community stow wget awscli mongodb-database-tools newt
     brew install --cask \
         alfred libreoffice the-unarchiver visual-studio-code iina \
-        postman slack iterm2 rectangle spotify docker jetbrains-toolbox telegram transmission
+        postman slack iterm2 rectangle spotify docker jetbrains-toolbox telegram transmission todoist
     brew services start mongodb/brew/mongodb-community
     xcode-select --install
 }
