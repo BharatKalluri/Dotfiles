@@ -1,5 +1,0 @@
-[Desktop Entry]
-Name=Run on startup
-Type=Application
-Exec=/usr/bin/bash /home/bharatkalluri/.run_on_startup
-Terminal=false
