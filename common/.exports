@@ -11,9 +11,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.yarn/bin"
 
-# Add Scripts to path
-export PATH="$PATH:$HOME/scripts"
-
 export LAMBDA_AWS_CREDS_FILE="$HOME/.aws/credentials"
 
 export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -66,7 +63,7 @@ export PATH="$PATH:$SPICETIFY_INSTALL"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
