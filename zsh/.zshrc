@@ -2,13 +2,10 @@ if [ -f ~/.exports ]; then
     . ~/.exports
 fi
 
-export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="robbyrussell"
-plugins=(
-    git
-    asdf
-)
-ZSH_DISABLE_COMPFIX=true
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+    source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
 
 if [ -f ~/.source ]; then
     . ~/.source

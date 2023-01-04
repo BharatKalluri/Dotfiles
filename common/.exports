@@ -1,8 +1,5 @@
 export EDITOR=nvim
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
 # NVM Configuration
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -60,3 +57,7 @@ export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 # Spicetify-cli
 export SPICETIFY_INSTALL="/home/bharatkalluri/Apps/spicetify-cli"
 export PATH="$PATH:$SPICETIFY_INSTALL"
+
+# asdf
+export PATH="$PATH:$HOME/.asdf/bin"
+export PATH="$PATH:$HOME/.asdf/shims"
