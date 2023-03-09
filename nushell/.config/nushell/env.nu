@@ -58,6 +58,7 @@ let-env NU_PLUGIN_DIRS = [
     ($nu.config-path | path dirname | path join 'plugins')
 ]
 
+# setting up bin paths
 let-env PATH = ($env.PATH | prepend [
     '~/.asdf/bin',
     '~/.asdf/shims',
