@@ -6,13 +6,6 @@ let-env NU_PLUGIN_DIRS = [
 ]
 
 
-# activate starship & rtx
-mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
-mkdir ~/.cache/rtx
-rtx activate nu | save -f ~/.cache/rtx/init.nu
-
-
 # add all bin folders to path
 let BIN_PATH_LIST = ([
     "~/.local/bin",
@@ -20,7 +13,9 @@ let BIN_PATH_LIST = ([
 let-env PATH = ($env.PATH | split row (char esep) | prepend $BIN_PATH_LIST)
 
 
-# Aliases
-alias cp = coreutils cp
-alias ls = exa
-alias cat = bat
+# activate starship & rtx
+mkdir ~/.cache/starship
+starship init nu | save -f ~/.cache/starship/init.nu
+mkdir ~/.cache/rtx
+rtx activate nu | save -f ~/.cache/rtx/init.nu
+
